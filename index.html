@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -50,6 +50,12 @@
     transition: all 0.3s;
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-img {
+    height: 52px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
   .nav-logo-icon {
     width: 44px; height: 44px; background: var(--green);
     border-radius: 12px; display: flex; align-items: center; justify-content: center;
@@ -587,8 +593,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">🌿</div>
-    <div class="nav-logo-text">O'Marché <span>Ivoire</span></div>
+    <img src="assets/logo-omarche-ivoire.png" alt="O'Marché Ivoire" class="nav-logo-img">
   </a>
   <ul class="nav-links">
     <li><a href="#about">À propos</a></li>
@@ -1156,8 +1161,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:1rem;">
-          <div class="nav-logo-icon">🌿</div>
-          <div class="nav-logo-text" style="font-size:1.3rem;">O'Marché <span>Ivoire</span></div>
+          <img src="assets/logo-omarche-ivoire.png" alt="O'Marché Ivoire" class="nav-logo-img" style="height:60px;">
         </div>
         <p>Le premier hypermarché vivrier digital en Côte d'Ivoire. Nous connectons agriculteurs, commerçantes et consommateurs d'Abidjan pour un accès simplifié aux produits frais locaux.</p>
         <div class="footer-social">
