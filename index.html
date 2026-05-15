@@ -51,9 +51,16 @@
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo-img {
-    height: 52px;
+    height: 64px;
     width: auto;
     display: block;
+    object-fit: contain;
+  }
+  .loader-logo-img {
+    height: 130px;
+    width: auto;
+    display: block;
+    margin: 0 auto 1.25rem;
     object-fit: contain;
   }
   .nav-logo-icon {
@@ -553,7 +560,6 @@
     z-index: 9999; transition: opacity 0.5s;
   }
   .loader-content { text-align: center; color: white; }
-  .loader-logo { font-family: var(--font-display); font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; }
   .loader-bar { width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 0 auto; overflow: hidden; }
   .loader-fill { height: 100%; background: var(--orange); border-radius: 2px; animation: load 1.5s ease forwards; }
   @keyframes load { from { width: 0%; } to { width: 100%; } }
@@ -584,7 +590,7 @@
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-content">
-    <div class="loader-logo">🌿 O'Marché</div>
+    <img src="assets/logo-omarche-ivoire.png" alt="O'Marché Ivoire" class="loader-logo-img">
     <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:1.5rem;">Le vivrier digital d'Abidjan</p>
     <div class="loader-bar"><div class="loader-fill"></div></div>
   </div>
@@ -1161,7 +1167,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:1rem;">
-          <img src="assets/logo-omarche-ivoire.png" alt="O'Marché Ivoire" class="nav-logo-img" style="height:60px;">
+          <img src="assets/logo-omarche-ivoire.png" alt="O'Marché Ivoire" class="nav-logo-img" style="height:72px;">
         </div>
         <p>Le premier hypermarché vivrier digital en Côte d'Ivoire. Nous connectons agriculteurs, commerçantes et consommateurs d'Abidjan pour un accès simplifié aux produits frais locaux.</p>
         <div class="footer-social">
