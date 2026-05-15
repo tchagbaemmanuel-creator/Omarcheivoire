@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O'Marché Ivoire – Le Premier Hypermarché Vivrier Digital en Côte d'Ivoire</title>
+<meta name="description" content="O'Marché Ivoire SARL – Achat, vente et livraison de produits vivriers à Abidjan. 16 épiceries partenaires, 300+ produits, livraison 7j/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b2a;
+    --green-light: #2d9040;
+    --green-pale: #e8f5ec;
+    --orange: #e85d04;
+    --orange-light: #fb8500;
+    --orange-pale: #fff3e0;
+    --yellow: #f9c74f;
+    --white: #ffffff;
+    --off-white: #fafaf7;
+    --dark: #0f1f0f;
+    --dark-2: #1a2e1a;
+    --gray: #6b7280;
+    --gray-light: #f3f4f2;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 40px rgba(0,0,0,0.14);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--off-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: all 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 44px; height: 44px; background: var(--green);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .nav-logo-text { font-family: var(--font-display); font-size: 1.2rem; color: var(--green); font-weight: 700; }
+  .nav-logo-text span { color: var(--orange); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--orange); color: white; padding: 0.6rem 1.4rem;
+    border-radius: 50px; font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(232,93,4,0.3); }
+  .nav-mobile-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a1f0a 0%, #1a3a1a 40%, #0f2f0f 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding-top: 72px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1600&q=80');
+    background-size: cover; background-position: center;
+    opacity: 0.18;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(26,107,42,0.4) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(232,93,4,0.3) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,93,4,0.2); border: 1px solid rgba(232,93,4,0.4);
+    color: #fb8500; padding: 0.4rem 1rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: '🇨🇮'; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: white; line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--yellow); font-style: italic; }
+  .hero-sub { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-primary {
+    background: var(--orange); color: white; padding: 0.85rem 2rem;
+    border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 20px rgba(232,93,4,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,93,4,0.5); background: var(--orange-light); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.1); color: white; padding: 0.85rem 2rem;
+    border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.25s; border: 1px solid rgba(255,255,255,0.25);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .stat-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px); border-radius: var(--radius-sm);
+    padding: 1.2rem;
+  }
+  .stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--yellow); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-top: 4px; }
+  .hero-visual { position: relative; }
+  .hero-img-main {
+    width: 100%; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    aspect-ratio: 4/5;
+  }
+  .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-float {
+    position: absolute; bottom: -20px; left: -20px;
+    background: white; border-radius: var(--radius); padding: 1rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15); min-width: 220px;
+  }
+  .hero-float-title { font-size: 0.75rem; color: var(--gray); font-weight: 500; margin-bottom: 8px; }
+  .hero-float-items { display: flex; flex-direction: column; gap: 6px; }
+  .hero-float-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
+  .hero-float-item span:first-child { font-size: 1.2rem; }
+  .hero-float-badge {
+    margin-left: auto; background: var(--green-pale); color: var(--green);
+    font-size: 0.7rem; padding: 2px 8px; border-radius: 50px; font-weight: 600;
+  }
+
+  /* SECTIONS COMMON */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; background: var(--green-pale); color: var(--green);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--dark); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--gray); font-size: 1.05rem; line-height: 1.7; max-width: 600px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  /* ABOUT */
+  .about { background: white; }
+  .about-img { border-radius: 20px; overflow: hidden; }
+  .about-img img { width: 100%; height: 460px; object-fit: cover; }
+  .about-content { padding: 1rem; }
+  .about-feature { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+  .about-icon {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .about-feature h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+  .about-feature p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+  /* ACTIVITIES */
+  .activities { background: var(--off-white); }
+  .activity-card {
+    background: white; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: all 0.3s; cursor: pointer;
+  }
+  .activity-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+  .activity-img { height: 200px; overflow: hidden; position: relative; }
+  .activity-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .activity-card:hover .activity-img img { transform: scale(1.08); }
+  .activity-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  }
+  .activity-body { padding: 1.5rem; }
+  .activity-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .activity-body p { font-size: 0.875rem; color: var(--gray); line-height: 1.6; margin-bottom: 1rem; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1.5px solid var(--green); color: var(--green);
+    padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; cursor: pointer; background: none;
+  }
+  .btn-outline:hover { background: var(--green); color: white; }
+
+  /* EPICERIES */
+  .epiceries { background: white; }
+  .epiceries-header { text-align: center; margin-bottom: 3rem; }
+  .epiceries-header .section-sub { margin: 0 auto; }
+  .epicerie-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+  .epicerie-card {
+    background: var(--off-white); border-radius: var(--radius-sm); overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s;
+  }
+  .epicerie-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--green); }
+  .epicerie-img { height: 120px; overflow: hidden; position: relative; }
+  .epicerie-img img { width: 100%; height: 100%; object-fit: cover; }
+  .epicerie-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--green); color: white; font-size: 0.65rem; font-weight: 700;
+    padding: 3px 8px; border-radius: 50px;
+  }
+  .epicerie-body { padding: 1rem; }
+  .epicerie-body h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 4px; }
+  .epicerie-body .loc { font-size: 0.75rem; color: var(--gray); display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+  .epicerie-body .prods { font-size: 0.75rem; color: var(--orange); font-weight: 600; }
+  .epicerie-body .btn-visit {
+    margin-top: 10px; width: 100%; text-align: center; display: block;
+    background: var(--green-pale); color: var(--green); border-radius: 8px;
+    padding: 6px; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all 0.2s;
+    border: none; cursor: pointer;
+  }
+  .epicerie-body .btn-visit:hover { background: var(--green); color: white; }
+
+  /* PRODUITS */
+  .produits { background: var(--off-white); }
+  .produits-header { text-align: center; margin-bottom: 3rem; }
+  .produits-search {
+    display: flex; gap: 1rem; max-width: 700px; margin: 0 auto 2rem;
+    background: white; border-radius: 50px; padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.08);
+  }
+  .produits-search input {
+    flex: 1; border: none; outline: none; font-family: var(--font-body); font-size: 0.9rem;
+    background: transparent;
+  }
+  .produits-search button {
+    background: var(--green); color: white; border: none; border-radius: 50px;
+    padding: 0.6rem 1.5rem; font-weight: 600; font-size: 0.85rem; cursor: pointer;
+  }
+  .categories { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; margin-bottom: 2rem; }
+  .cat-btn {
+    padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+    border: 1.5px solid transparent; cursor: pointer; transition: all 0.2s;
+    background: white; color: var(--gray); border-color: rgba(0,0,0,0.1);
+  }
+  .cat-btn.active, .cat-btn:hover { background: var(--green); color: white; border-color: var(--green); }
+  .produits-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; }
+  .produit-card {
+    background: white; border-radius: var(--radius-sm); overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s;
+  }
+  .produit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .produit-img { height: 130px; overflow: hidden; position: relative; background: var(--gray-light); }
+  .produit-img img { width: 100%; height: 100%; object-fit: cover; }
+  .promo-badge {
+    position: absolute; top: 8px; left: 8px; background: var(--orange); color: white;
+    font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 50px;
+  }
+  .produit-body { padding: 0.8rem; }
+  .produit-stars { color: var(--yellow); font-size: 0.75rem; margin-bottom: 4px; }
+  .produit-body h4 { font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; }
+  .produit-price { font-size: 0.9rem; font-weight: 800; color: var(--green); }
+  .produit-unit { font-size: 0.7rem; color: var(--gray); }
+  .produit-add {
+    width: 100%; margin-top: 8px; background: var(--green); color: white;
+    border: none; border-radius: 8px; padding: 6px; font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .produit-add:hover { background: var(--green-light); }
+
+  /* AVANTAGES */
+  .avantages { background: var(--dark); color: white; }
+  .avantages .section-title { color: white; }
+  .avantages .section-sub { color: rgba(255,255,255,0.65); }
+  .avantages .section-tag { background: rgba(249,199,79,0.15); color: var(--yellow); }
+  .avantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .avantage-item {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius); padding: 2rem;
+    transition: all 0.3s;
+  }
+  .avantage-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+  .avantage-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .avantage-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .avantage-item p { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* COMMERCANTES */
+  .commercantes { background: white; }
+  .timeline { margin-top: 2rem; }
+  .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 2rem; position: relative; }
+  .timeline-item:not(:last-child)::before {
+    content: ''; position: absolute; left: 20px; top: 48px;
+    width: 2px; height: calc(100% + 0.5rem); background: var(--green-pale);
+  }
+  .timeline-dot {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: white;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .timeline-content h4 { font-weight: 700; margin-bottom: 4px; }
+  .timeline-content p { font-size: 0.875rem; color: var(--gray); line-height: 1.6; }
+
+  /* CONSOMMATEURS */
+  .consommateurs { background: var(--off-white); }
+  .consomm-card {
+    background: white; border-radius: var(--radius); padding: 2rem;
+    box-shadow: var(--shadow); display: flex; gap: 1.2rem; align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .consomm-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .consomm-icon {
+    width: 54px; height: 54px; border-radius: 14px; background: var(--orange-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+  }
+  .consomm-card h4 { font-weight: 700; margin-bottom: 6px; }
+  .consomm-card p { font-size: 0.875rem; color: var(--gray); line-height: 1.5; }
+
+  /* TEMOIGNAGES */
+  .temoignages { background: var(--green); color: white; }
+  .temoignages .section-title { color: white; }
+  .temoignages .section-tag { background: rgba(255,255,255,0.15); color: white; }
+  .temoignages-header { text-align: center; margin-bottom: 3rem; }
+  .temoignages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .temoignage-card {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius); padding: 2rem;
+    transition: all 0.3s;
+  }
+  .temoignage-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-4px); }
+  .stars { color: var(--yellow); font-size: 1rem; margin-bottom: 1rem; }
+  .temoignage-text { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-style: italic; }
+  .temoignage-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem;
+  }
+  .author-name { font-weight: 700; font-size: 0.875rem; }
+  .author-role { font-size: 0.75rem; color: rgba(255,255,255,0.65); }
+
+  /* APP */
+  .app-section { background: var(--dark); color: white; overflow: hidden; }
+  .app-section .section-title { color: white; }
+  .app-section .section-sub { color: rgba(255,255,255,0.65); }
+  .app-features { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .app-feature { display: flex; gap: 1rem; align-items: center; }
+  .app-feature-icon {
+    width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .app-feature span { font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+  .app-store-btns { display: flex; gap: 1rem; margin-top: 2.5rem; }
+  .store-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px; padding: 0.8rem 1.5rem; text-decoration: none; color: white;
+    transition: all 0.2s;
+  }
+  .store-btn:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+  .store-btn-icon { font-size: 1.8rem; }
+  .store-btn-text { font-size: 0.65rem; color: rgba(255,255,255,0.65); }
+  .store-btn-name { font-size: 0.9rem; font-weight: 700; display: block; }
+  .app-mockup { position: relative; display: flex; justify-content: center; }
+  .phone-frame {
+    width: 260px;
+    background: linear-gradient(135deg, #1a3a1a, #2d5a2d);
+    border-radius: 40px; padding: 16px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    border: 3px solid rgba(255,255,255,0.1);
+  }
+  .phone-screen {
+    background: var(--off-white); border-radius: 28px; overflow: hidden;
+    min-height: 440px;
+  }
+  .phone-header {
+    background: var(--green); padding: 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .phone-header span { color: white; font-size: 0.75rem; font-weight: 700; }
+  .phone-search {
+    margin: 0.75rem; background: white; border-radius: 50px;
+    padding: 0.4rem 1rem; font-size: 0.7rem; color: var(--gray);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .phone-cats {
+    display: flex; gap: 8px; padding: 0 0.75rem;
+    overflow: hidden;
+  }
+  .phone-cat {
+    background: var(--green-pale); color: var(--green);
+    font-size: 0.65rem; font-weight: 600; padding: 4px 10px; border-radius: 50px; white-space: nowrap;
+  }
+  .phone-products {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0.75rem;
+  }
+  .phone-prod {
+    background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .phone-prod-img { height: 60px; overflow: hidden; }
+  .phone-prod-img img { width: 100%; height: 100%; object-fit: cover; }
+  .phone-prod-info { padding: 6px; }
+  .phone-prod-name { font-size: 0.6rem; font-weight: 600; margin-bottom: 2px; }
+  .phone-prod-price { font-size: 0.65rem; color: var(--green); font-weight: 700; }
+
+  /* FAQ */
+  .faq { background: white; }
+  .faq-header { text-align: center; margin-bottom: 3rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+  .faq-item {
+    border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 1.5rem; font-family: var(--font-body); font-size: 0.95rem;
+    font-weight: 600; text-align: left; color: var(--dark);
+    transition: background 0.2s;
+  }
+  .faq-question:hover { background: var(--off-white); }
+  .faq-chevron { font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; color: var(--green); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-answer {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    padding: 0 1.5rem; color: var(--gray); font-size: 0.9rem; line-height: 1.7;
+  }
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.2rem; }
+
+  /* FOOTER */
+  footer { background: var(--dark-2); color: white; padding: 4rem 2rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { color: rgba(255,255,255,0.55); font-size: 0.875rem; line-height: 1.7; margin: 1rem 0; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .social-btn:hover { background: var(--green); }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; color: rgba(255,255,255,0.9); }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-contact-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-bottom: 0.7rem; }
+  .footer-contact-icon { font-size: 1rem; }
+  .newsletter { margin-top: 1rem; }
+  .newsletter-form { display: flex; gap: 0; }
+  .newsletter-form input {
+    flex: 1; padding: 0.6rem 1rem; border-radius: 8px 0 0 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-right: none;
+    color: white; font-family: var(--font-body); font-size: 0.8rem; outline: none;
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+  .newsletter-form button {
+    background: var(--orange); color: white; border: none; padding: 0.6rem 1rem;
+    border-radius: 0 8px 8px 0; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.35); flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .hero-badge { animation: fadeIn 0.8s ease; }
+  .hero h1 { animation: fadeUp 0.9s ease 0.1s both; }
+  .hero-sub { animation: fadeUp 0.9s ease 0.2s both; }
+  .hero-btns { animation: fadeUp 0.9s ease 0.3s both; }
+  .hero-stats { animation: fadeUp 0.9s ease 0.4s both; }
+  .hero-visual { animation: fadeUp 0.9s ease 0.2s both; }
+  .hero-float { animation: float 4s ease-in-out infinite; }
+  .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .animate-on-scroll.visible { opacity: 1; transform: none; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .produits-grid { grid-template-columns: repeat(4, 1fr); }
+    .epicerie-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-mobile-btn { display: block; }
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-btns { justify-content: center; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .produits-grid { grid-template-columns: repeat(3, 1fr); }
+    .epicerie-grid { grid-template-columns: repeat(2, 1fr); }
+    .avantages-grid { grid-template-columns: 1fr 1fr; }
+    .temoignages-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 3.5rem 1.2rem; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr; }
+    .produits-grid { grid-template-columns: 1fr 1fr; }
+    .epicerie-grid { grid-template-columns: 1fr 1fr; }
+    .avantages-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  /* MOBILE NAV MENU */
+  .mobile-menu {
+    display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+    background: white; z-index: 999; padding: 2rem;
+    flex-direction: column; gap: 1.5rem; overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1.1rem; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--gray-light); padding-bottom: 1rem; }
+  .mobile-menu .btn-primary { text-align: center; justify-content: center; }
+
+  /* LOADING SCREEN */
+  #loader {
+    position: fixed; inset: 0; background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; transition: opacity 0.5s;
+  }
+  .loader-content { text-align: center; color: white; }
+  .loader-logo { font-family: var(--font-display); font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; }
+  .loader-bar { width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 0 auto; overflow: hidden; }
+  .loader-fill { height: 100%; background: var(--orange); border-radius: 2px; animation: load 1.5s ease forwards; }
+  @keyframes load { from { width: 0%; } to { width: 100%; } }
+
+  /* BACK TO TOP */
+  #back-top {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 100;
+    width: 46px; height: 46px; border-radius: 12px; background: var(--green);
+    color: white; border: none; cursor: pointer; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(10px); transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(26,107,42,0.4);
+  }
+  #back-top.visible { opacity: 1; transform: none; }
+  #back-top:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  /* DIVIDER */
+  .wave-divider { line-height: 0; }
+  .wave-divider svg { display: block; }
+
+  /* HIGHLIGHT TEXT */
+  .highlight { color: var(--orange); }
+  .highlight-green { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">🌿 O'Marché</div>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:1.5rem;">Le vivrier digital d'Abidjan</p>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    <div class="nav-logo-text">O'Marché <span>Ivoire</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#activites">Activités</a></li>
+    <li><a href="#epiceries">Épiceries</a></li>
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#app">Application</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#commander" class="nav-cta">Commander →</a>
+  <button class="nav-mobile-btn" id="menuBtn" aria-label="Menu">☰</button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobileMenu()">À propos</a>
+  <a href="#activites" onclick="closeMobileMenu()">Nos activités</a>
+  <a href="#epiceries" onclick="closeMobileMenu()">Épiceries partenaires</a>
+  <a href="#produits" onclick="closeMobileMenu()">Produits vivriers</a>
+  <a href="#app" onclick="closeMobileMenu()">Application mobile</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#commander" class="btn-primary" onclick="closeMobileMenu()">Commander maintenant</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">Startup Ivoirienne • Abidjan</div>
+      <h1>Le premier <em>hypermarché vivrier digital</em> en Côte d'Ivoire</h1>
+      <p class="hero-sub">O'Marché Ivoire connecte commerçantes, agriculteurs et consommateurs d'Abidjan dans une seule plateforme moderne. Produits frais, livrés chez vous.</p>
+      <div class="hero-btns">
+        <a href="#commander" class="btn-primary">🛒 Commander maintenant</a>
+        <a href="#partenaire" class="btn-secondary">🤝 Devenir partenaire</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num" data-count="16">0</div>
+          <div class="stat-label">Épiceries partenaires</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="300">0</div>
+          <div class="stat-label">Produits vivriers +</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7j/7</div>
+          <div class="stat-label">Livraison disponible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">ABJ</div>
+          <div class="stat-label">Abidjan & environs</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-main">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80" alt="Commerçante africaine avec produits vivriers">
+      </div>
+      <div class="hero-float">
+        <div class="hero-float-title">🔥 Disponibles maintenant</div>
+        <div class="hero-float-items">
+          <div class="hero-float-item"><span>🍅</span> Tomates fraîches <span class="hero-float-badge">Frais</span></div>
+          <div class="hero-float-item"><span>🌿</span> Attiéké <span class="hero-float-badge">Local</span></div>
+          <div class="hero-float-item"><span>🍌</span> Banane plantain <span class="hero-float-badge">Promo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="grid-2">
+      <div class="about-img animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?w=800&q=80" alt="Marché africain moderne">
+      </div>
+      <div class="about-content animate-on-scroll">
+        <span class="section-tag">À propos de nous</span>
+        <h2 class="section-title">Révolutionner le <span class="highlight">vivrier ivoirien</span> à l'ère digitale</h2>
+        <p style="color:var(--gray);line-height:1.7;margin-bottom:2rem;font-size:0.95rem;">O'MARCHE IVOIRE SARL est une société agricole ivoirienne spécialisée dans la commercialisation des denrées alimentaires vivrières. Notre politique est axée sur un processus de redynamisation de la chaîne de distribution via des stratégies modernes d'e-commerce et de commerce physique.</p>
+
+        <div class="about-feature">
+          <div class="about-icon">🏪</div>
+          <div>
+            <h4>E-commerce Vivrier</h4>
+            <p>Boutiques virtuelles pour commerçantes, hypermarché digital des produits locaux d'Abidjan.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="about-icon">📱</div>
+          <div>
+            <h4>Marchés Digitalisés</h4>
+            <p>Tous les marchés communaux d'Abidjan réunis en une seule application mobile intuitive.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="about-icon">🤝</div>
+          <div>
+            <h4>Soutien aux Commerçantes</h4>
+            <p>Formation, financement et accompagnement des acteurs marginalisés de la chaîne alimentaire.</p>
+          </div>
+        </div>
+        <a href="#activites" class="btn-primary" style="display:inline-flex;margin-top:1rem;">Découvrir nos activités →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITES -->
+<section class="activities" id="activites">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="section-tag">Nos activités</span>
+      <h2 class="section-title">Ce que nous faisons</h2>
+      <p class="section-sub" style="margin:0 auto;">Quatre activités clés pour transformer la distribution des produits vivriers en Côte d'Ivoire.</p>
+    </div>
+    <div class="grid-4 animate-on-scroll">
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="E-commerce">
+          <div class="activity-img-overlay"></div>
+        </div>
+        <div class="activity-body">
+          <h3>📱 E-Commerce Vivrier</h3>
+          <p>Application O'Marché Ivoire reliant consommateurs et commerçantes des marchés communaux d'Abidjan, 7j/7.</p>
+          <button class="btn-outline">Découvrir →</button>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80" alt="Produits vivriers">
+          <div class="activity-img-overlay"></div>
+        </div>
+        <div class="activity-body">
+          <h3>🌾 Achat & Vente de Vivriers</h3>
+          <p>Partenariats exclusifs avec les agriculteurs locaux pour garantir approvisionnement frais et prix équitables.</p>
+          <button class="btn-outline">Découvrir →</button>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400&q=80" alt="Épiceries connectées">
+          <div class="activity-img-overlay"></div>
+        </div>
+        <div class="activity-body">
+          <h3>🏪 Épiceries Connectées</h3>
+          <p>Installation de mini-épiceries dans les quartiers d'Abidjan pour rapprocher les produits des consommateurs.</p>
+          <button class="btn-outline">Découvrir →</button>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80" alt="Recyclage alimentaire">
+          <div class="activity-img-overlay"></div>
+        </div>
+        <div class="activity-body">
+          <h3>♻️ Recyclage Alimentaire</h3>
+          <p>Traitement spécial des produits proches de péremption pour réduire les pertes et créer des conserves locales.</p>
+          <button class="btn-outline">Découvrir →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPICERIES -->
+<section class="epiceries" id="epiceries">
+  <div class="container">
+    <div class="epiceries-header animate-on-scroll">
+      <span class="section-tag">Réseau de proximité</span>
+      <h2 class="section-title">Nos <span class="highlight">16 Épiceries</span> Partenaires</h2>
+      <p class="section-sub">Présentes dans tous les quartiers stratégiques d'Abidjan, nos épiceries connectées vous rapprochent des produits frais.</p>
+    </div>
+    <div class="epicerie-grid animate-on-scroll">
+      <!-- Epiceries générées dynamiquement via JS -->
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="#" class="btn-primary" style="display:inline-flex;">Voir toutes les épiceries →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="produits" id="produits">
+  <div class="container">
+    <div class="produits-header animate-on-scroll">
+      <span class="section-tag">Catalogue</span>
+      <h2 class="section-title"><span class="highlight-green">300+</span> Produits Vivriers</h2>
+      <p class="section-sub" style="margin:0 auto;">Légumes, tubercules, fruits, céréales, épices et produits frais — tout le marché dans votre poche.</p>
+    </div>
+    <div class="produits-search animate-on-scroll">
+      <input type="text" placeholder="Rechercher un produit vivrier..." id="searchInput" oninput="filterProducts()">
+      <button onclick="filterProducts()">Rechercher</button>
+    </div>
+    <div class="categories animate-on-scroll" id="catButtons">
+      <button class="cat-btn active" onclick="filterCat('all', this)">Tout</button>
+      <button class="cat-btn" onclick="filterCat('legumes', this)">🥬 Légumes</button>
+      <button class="cat-btn" onclick="filterCat('tubercules', this)">🥔 Tubercules</button>
+      <button class="cat-btn" onclick="filterCat('fruits', this)">🍌 Fruits</button>
+      <button class="cat-btn" onclick="filterCat('cereales', this)">🌾 Céréales</button>
+      <button class="cat-btn" onclick="filterCat('epices', this)">🌶️ Épices</button>
+      <button class="cat-btn" onclick="filterCat('frais', this)">🥛 Produits frais</button>
+    </div>
+    <div class="produits-grid" id="produitsGrid"></div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-primary" onclick="loadMoreProducts()" id="loadMoreBtn" style="border:none;cursor:pointer;">Voir plus de produits →</button>
+    </div>
+  </div>
+</section>
+
+<!-- AVANTAGES -->
+<section class="avantages" id="avantages">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:1rem;" class="animate-on-scroll">
+      <span class="section-tag">Pourquoi nous choisir</span>
+      <h2 class="section-title">Des avantages<br><em style="font-family:var(--font-display);color:var(--yellow);">pensés pour vous</em></h2>
+      <p class="section-sub" style="margin:0 auto;color:rgba(255,255,255,0.6);">O'Marché Ivoire s'engage à vous offrir la meilleure expérience de commande de vivriers à Abidjan.</p>
+    </div>
+    <div class="avantages-grid animate-on-scroll">
+      <div class="avantage-item">
+        <div class="avantage-icon">🚀</div>
+        <h3>Livraison Express</h3>
+        <p>Livraison rapide à domicile dans tous les quartiers d'Abidjan, disponible 7 jours sur 7.</p>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">🌱</div>
+        <h3>Produits 100% Frais</h3>
+        <p>Approvisionnement direct auprès des agriculteurs locaux. Fraîcheur garantie à chaque commande.</p>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">📍</div>
+        <h3>Proximité Maximale</h3>
+        <p>16 épiceries connectées réparties dans tous les quartiers stratégiques d'Abidjan.</p>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">💳</div>
+        <h3>Paiement Simplifié</h3>
+        <p>Paiement mobile money (MTN, Orange), carte ou à crédit. Flexible et sécurisé.</p>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">👩‍🌾</div>
+        <h3>Producteurs Locaux</h3>
+        <p>Partenariats directs avec agriculteurs ivoiriens. Chaque achat soutient l'économie locale.</p>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">🕐</div>
+        <h3>Disponible 7j/7</h3>
+        <p>Application et service client disponibles tous les jours, à toute heure. Commandez quand vous voulez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMERCANTES -->
+<section class="commercantes" id="commercantes">
+  <div class="container">
+    <div class="grid-2">
+      <div class="animate-on-scroll">
+        <span class="section-tag">Pour les commerçantes</span>
+        <h2 class="section-title">Digitalisez votre <span class="highlight">activité</span> avec nous</h2>
+        <p class="section-sub" style="margin-bottom:2rem;">O'Marché Ivoire offre aux commerçantes les outils modernes pour augmenter leurs revenus et toucher plus de clients dans toute la ville d'Abidjan.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">1</div>
+            <div class="timeline-content">
+              <h4>Créez votre boutique virtuelle</h4>
+              <p>Inscrivez-vous, téléchargez vos produits et commencez à vendre en ligne dès aujourd'hui.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">2</div>
+            <div class="timeline-content">
+              <h4>Formation au e-commerce</h4>
+              <p>Notre équipe vous accompagne avec des formations pratiques pour maîtriser la vente en ligne.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">3</div>
+            <div class="timeline-content">
+              <h4>Élargissez votre clientèle</h4>
+              <p>Touchez des milliers de consommateurs dans toute la ville d'Abidjan, pas seulement votre quartier.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">4</div>
+            <div class="timeline-content">
+              <h4>Accédez aux financements</h4>
+              <p>Profitez des programmes d'insertion financière pour développer davantage votre activité.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;">Rejoindre le réseau →</a>
+      </div>
+      <div class="animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1603199506016-b9a594b593c0?w=700&q=80" alt="Commerçante africaine avec tablette" style="width:100%;border-radius:20px;object-fit:cover;height:520px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSOMMATEURS -->
+<section class="consommateurs" id="consommateurs">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;" class="animate-on-scroll">
+      <span class="section-tag">Pour les consommateurs</span>
+      <h2 class="section-title">Votre marché,<br><span class="highlight-green">livré chez vous</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Fini les longues files d'attente. Commandez depuis votre téléphone et recevez vos vivriers frais à domicile.</p>
+    </div>
+    <div class="grid-3 animate-on-scroll">
+      <div class="consomm-card">
+        <div class="consomm-icon">⏱️</div>
+        <div>
+          <h4>Gagnez du temps</h4>
+          <p>Plus besoin de parcourir plusieurs marchés. Tout est réuni en une seule application mobile.</p>
+        </div>
+      </div>
+      <div class="consomm-card">
+        <div class="consomm-icon">🏠</div>
+        <div>
+          <h4>Livraison à domicile</h4>
+          <p>Recevez vos courses directement chez vous ou retirez-les aux points relais proches de chez vous.</p>
+        </div>
+      </div>
+      <div class="consomm-card">
+        <div class="consomm-icon">🛒</div>
+        <div>
+          <h4>Choix exceptionnel</h4>
+          <p>300+ produits vivriers disponibles : légumes, tubercules, fruits, céréales et épices locales.</p>
+        </div>
+      </div>
+      <div class="consomm-card">
+        <div class="consomm-icon">📅</div>
+        <div>
+          <h4>Courses programmées</h4>
+          <p>Définissez vos fréquences de marché (hebdomadaire, mensuel) et soyez livré automatiquement.</p>
+        </div>
+      </div>
+      <div class="consomm-card">
+        <div class="consomm-icon">💰</div>
+        <div>
+          <h4>Achat à crédit</h4>
+          <p>Faites votre marché à crédit et payez à votre convenance. Une solution flexible et accessible.</p>
+        </div>
+      </div>
+      <div class="consomm-card">
+        <div class="consomm-icon">🌍</div>
+        <div>
+          <h4>Tous les marchés d'Abidjan</h4>
+          <p>Adjamé, Cocody, Yopougon, Marcory, Koumassi... tous les marchés communaux en un clic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section class="temoignages" id="temoignages">
+  <div class="container">
+    <div class="temoignages-header animate-on-scroll">
+      <span class="section-tag">Témoignages</span>
+      <h2 class="section-title">Ils nous font <em style="font-family:var(--font-display);">confiance</em></h2>
+    </div>
+    <div class="temoignages-grid animate-on-scroll">
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"Depuis que je suis sur O'Marché, mes ventes ont augmenté de 40%. Des clients de tout Abidjan commandent mes légumes. Je gère tout depuis mon téléphone, c'est incroyable !"</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">AF</div>
+          <div>
+            <div class="author-name">Amoin Fatoumata</div>
+            <div class="author-role">Commerçante, Marché Adjamé</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"Avec O'Marché, je commande les légumes pour mon restaurant le soir, et c'est livré frais le lendemain matin. Parfait pour ma cuisine ! La qualité est toujours au rendez-vous."</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">SK</div>
+          <div>
+            <div class="author-name">Séraphin Kouassi</div>
+            <div class="author-role">Restaurateur, Cocody</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"Je programme mes courses hebdomadaires et je suis livré le samedi matin sans bouger. Mes enfants adorent les fruits frais. O'Marché a vraiment changé notre quotidien familial !"</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">MN</div>
+          <div>
+            <div class="author-name">Marie-Noëlle Diallo</div>
+            <div class="author-role">Ménagère, Yopougon</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"En tant qu'agriculteur à Grand-Bassam, je vendais difficilement mes récoltes. Avec O'Marché, tout est vendu en 48h. Plus de pertes, et mes revenus ont triplé cette année !"</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">KY</div>
+          <div>
+            <div class="author-name">Kouamé Yao</div>
+            <div class="author-role">Agriculteur, Grand-Bassam</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"L'épicerie connectée de mon quartier à Marcory est une révolution ! Je descends en 2 minutes acheter mes légumes frais. Prix transparents, qualité top, personnel sympa."</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">AB</div>
+          <div>
+            <div class="author-name">Adjoua Bah</div>
+            <div class="author-role">Cliente, Marcory</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <p class="temoignage-text">"Mon hôtel commande 50kg de légumes par semaine via O'Marché. La livraison est ponctuelle, les produits frais et les prix sont bien meilleurs qu'au marché traditionnel. Je recommande !"</p>
+        <div class="temoignage-author">
+          <div class="author-avatar">JB</div>
+          <div>
+            <div class="author-name">Jean-Baptiste Traoré</div>
+            <div class="author-role">Directeur Hôtel, Plateau</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION MOBILE -->
+<section class="app-section" id="app">
+  <div class="container">
+    <div class="grid-2">
+      <div class="animate-on-scroll">
+        <span class="section-tag" style="background:rgba(249,199,79,0.15);color:var(--yellow);">Application Mobile</span>
+        <h2 class="section-title">Téléchargez<br><em style="font-family:var(--font-display);color:var(--yellow);">O'Marché Ivoire</em></h2>
+        <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;line-height:1.7;font-size:0.95rem;">Le premier hypermarché vivrier digital d'Abidjan dans votre poche. Commandez, suivez votre livraison et gérez vos courses en toute simplicité.</p>
+        <div class="app-features">
+          <div class="app-feature"><div class="app-feature-icon">🛒</div><span>Commande en ligne simple et rapide</span></div>
+          <div class="app-feature"><div class="app-feature-icon">📍</div><span>Suivi de livraison en temps réel</span></div>
+          <div class="app-feature"><div class="app-feature-icon">💬</div><span>Chat direct avec les commerçantes</span></div>
+          <div class="app-feature"><div class="app-feature-icon">📅</div><span>Courses programmées automatiquement</span></div>
+          <div class="app-feature"><div class="app-feature-icon">⭐</div><span>Notation et avis sur les produits</span></div>
+          <div class="app-feature"><div class="app-feature-icon">💳</div><span>Paiement mobile money & crédit</span></div>
+        </div>
+        <div class="app-store-btns">
+          <a href="#" class="store-btn">
+            <div class="store-btn-icon">🍎</div>
+            <div>
+              <div class="store-btn-text">Disponible sur</div>
+              <span class="store-btn-name">App Store</span>
+            </div>
+          </a>
+          <a href="#" class="store-btn">
+            <div class="store-btn-icon">▶</div>
+            <div>
+              <div class="store-btn-text">Disponible sur</div>
+              <span class="store-btn-name">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="app-mockup animate-on-scroll">
+        <div class="phone-frame" style="animation:float 4s ease-in-out infinite;">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <span>🌿 O'Marché Ivoire</span>
+              <span>🔔</span>
+            </div>
+            <div class="phone-search">🔍 Rechercher des produits...</div>
+            <div class="phone-cats">
+              <span class="phone-cat">🥬 Légumes</span>
+              <span class="phone-cat">🍌 Fruits</span>
+              <span class="phone-cat">🌾 Céréales</span>
+            </div>
+            <p style="padding:0.75rem 0.75rem 0.3rem;font-size:0.7rem;font-weight:700;color:var(--dark);">🔥 Populaires aujourd'hui</p>
+            <div class="phone-products">
+              <div class="phone-prod">
+                <div class="phone-prod-img"><img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&q=80" alt="Tomates"></div>
+                <div class="phone-prod-info"><div class="phone-prod-name">Tomates</div><div class="phone-prod-price">500 FCFA/kg</div></div>
+              </div>
+              <div class="phone-prod">
+                <div class="phone-prod-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=200&q=80" alt="Banane"></div>
+                <div class="phone-prod-info"><div class="phone-prod-name">Banane plantain</div><div class="phone-prod-price">300 FCFA</div></div>
+              </div>
+              <div class="phone-prod">
+                <div class="phone-prod-img"><img src="https://images.unsplash.com/photo-1585218356987-b2bf0ccb7fde?w=200&q=80" alt="Aubergine"></div>
+                <div class="phone-prod-info"><div class="phone-prod-name">Aubergine</div><div class="phone-prod-price">400 FCFA/kg</div></div>
+              </div>
+              <div class="phone-prod">
+                <div class="phone-prod-img"><img src="https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=200&q=80" alt="Igname"></div>
+                <div class="phone-prod-info"><div class="phone-prod-name">Igname</div><div class="phone-prod-price">800 FCFA/kg</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header animate-on-scroll">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">Questions fréquentes</h2>
+      <p class="section-sub" style="margin:0 auto;">Tout ce que vous devez savoir sur O'Marché Ivoire.</p>
+    </div>
+    <div class="faq-list animate-on-scroll">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Comment passer une commande sur O'Marché Ivoire ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Téléchargez l'application O'Marché Ivoire sur App Store ou Google Play, créez un compte, parcourez le catalogue de 300+ produits, ajoutez vos articles au panier et choisissez votre mode de livraison (domicile ou point relais).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Quels sont les modes de paiement acceptés ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Nous acceptons Orange Money, MTN Mobile Money, Wave, les cartes bancaires Visa/Mastercard et le paiement à crédit. Le paiement à la livraison est également disponible dans certaines zones d'Abidjan.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Dans quelles zones livrez-vous à Abidjan ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Nous livrons dans toute l'agglomération d'Abidjan : Plateau, Cocody, Yopougon, Adjamé, Abobo, Marcory, Koumassi, Port-Bouët, Treichville et les communes environnantes. Les délais varient de 2 à 4 heures selon votre quartier.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Comment devenir une épicerie partenaire O'Marché ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Contactez-nous par téléphone (+225 07 78 08 84 27) ou email (omarchesarl@gmail.com). Notre équipe commerciale vous accompagnera dans tout le processus d'intégration : inscription, formation, installation du système et démarrage des ventes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Les produits sont-ils vraiment frais ? Quelle est la traçabilité ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Oui, nos produits proviennent directement des agriculteurs locaux avec qui nous avons des contrats exclusifs. Chaque produit est référencé avec sa provenance. Nous collectons les récoltes 2 fois par semaine pour garantir la fraîcheur maximale.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)"> Est-ce que je peux programmer mes courses à l'avance ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Absolument ! La fonctionnalité "Courses programmées" vous permet de définir votre liste de courses hebdomadaire ou mensuelle, modifiable à tout moment. Votre commande est préparée et livrée automatiquement à la date choisie.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Comment fonctionne le recyclage des denrées ? <span class="faq-chevron">⌄</span></button>
+        <div class="faq-answer">Nous collectons auprès des commerçantes les produits proches de péremption ou légèrement endommagés. Ces produits sont transformés en conserves et produits dérivés grâce à un traitement spécial, réduisant les pertes et créant de la valeur supplémentaire.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="commander" style="background: linear-gradient(135deg, var(--orange) 0%, #d64e00 100%); padding: 5rem 2rem; text-align: center; color: white;">
+  <div class="container animate-on-scroll">
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1rem;">Prêt à révolutionner<br><em>vos courses vivriers ?</em></h2>
+    <p style="color:rgba(255,255,255,0.85);margin-bottom:2.5rem;font-size:1.05rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;">Rejoignez des milliers de familles et commerçantes qui font confiance à O'Marché Ivoire chaque jour.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn-secondary" style="background:white;color:var(--orange);font-weight:700;">🛒 Commander maintenant</a>
+      <a href="tel:+2250778088427" class="btn-secondary">📞 +225 07 78 08 84 27</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:1rem;">
+          <div class="nav-logo-icon">🌿</div>
+          <div class="nav-logo-text" style="font-size:1.3rem;">O'Marché <span>Ivoire</span></div>
+        </div>
+        <p>Le premier hypermarché vivrier digital en Côte d'Ivoire. Nous connectons agriculteurs, commerçantes et consommateurs d'Abidjan pour un accès simplifié aux produits frais locaux.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="TikTok">♪</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#activites">Nos activités</a></li>
+          <li><a href="#epiceries">Épiceries</a></li>
+          <li><a href="#produits">Produits vivriers</a></li>
+          <li><a href="#app">Application</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#">E-commerce vivrier</a></li>
+          <li><a href="#">Livraison à domicile</a></li>
+          <li><a href="#">Épiceries connectées</a></li>
+          <li><a href="#">Recyclage alimentaire</a></li>
+          <li><a href="#">Partenariat commerçants</a></li>
+          <li><a href="#">Programme agriculteurs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+2250778088427" style="color:rgba(255,255,255,0.55);text-decoration:none;">+225 07 78 08 84 27</a></div>
+        <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:omarchesarl@gmail.com" style="color:rgba(255,255,255,0.55);text-decoration:none;">omarchesarl@gmail.com</a></div>
+        <div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span>Abidjan, Côte d'Ivoire</span></div>
+        <div class="newsletter" style="margin-top:1.5rem;">
+          <h4 style="margin-bottom:0.75rem;">Newsletter</h4>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Votre email...">
+            <button>→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 O'Marché Ivoire SARL. Tous droits réservés.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#" style="color:rgba(255,255,255,0.35);text-decoration:none;">Confidentialité</a>
+        <a href="#" style="color:rgba(255,255,255,0.35);text-decoration:none;">CGU</a>
+        <a href="#" style="color:rgba(255,255,255,0.35);text-decoration:none;">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
+
+<script>
+// LOADER
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 500);
+  }, 1600);
+});
+
+// NAVBAR SCROLL
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none';
+  const backTop = document.getElementById('back-top');
+  backTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+// MOBILE MENU
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// COUNTER ANIMATION
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  let count = 0;
+  const step = Math.ceil(target / 40);
+  const timer = setInterval(() => {
+    count = Math.min(count + step, target);
+    el.textContent = count + (target >= 300 ? '+' : '');
+    if (count >= target) clearInterval(timer);
+  }, 40);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = 'true';
+      animateCounter(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// PRODUITS DATA
+const allProducts = [
+  { name: 'Tomates fraîches', cat: 'legumes', price: '500 FCFA/kg', rating: 5, img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&q=60', promo: '-10%' },
+  { name: 'Banane plantain', cat: 'fruits', price: '300 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=200&q=60', promo: null },
+  { name: 'Igname', cat: 'tubercules', price: '800 FCFA/kg', rating: 4, img: 'https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=200&q=60', promo: null },
+  { name: 'Piment frais', cat: 'epices', price: '200 FCFA', rating: 4, img: 'https://images.unsplash.com/photo-1589620931685-9f7a3c7e18c4?w=200&q=60', promo: null },
+  { name: 'Aubergine locale', cat: 'legumes', price: '400 FCFA/kg', rating: 5, img: 'https://images.unsplash.com/photo-1585218356987-b2bf0ccb7fde?w=200&q=60', promo: '-5%' },
+  { name: 'Riz local', cat: 'cereales', price: '600 FCFA/kg', rating: 4, img: 'https://images.unsplash.com/photo-1536304993881-ff86e0c9d0b5?w=200&q=60', promo: null },
+  { name: 'Gombo', cat: 'legumes', price: '300 FCFA/botte', rating: 5, img: 'https://images.unsplash.com/photo-1628507696954-f1c5e3ac0fa6?w=200&q=60', promo: null },
+  { name: 'Manioc', cat: 'tubercules', price: '500 FCFA/kg', rating: 4, img: 'https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=200&q=60', promo: null },
+  { name: 'Mangue', cat: 'fruits', price: '250 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=200&q=60', promo: 'Saison!' },
+  { name: 'Maïs doux', cat: 'cereales', price: '150 FCFA', rating: 4, img: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=200&q=60', promo: null },
+  { name: "Gingembre", cat: 'epices', price: '400 FCFA/100g', rating: 5, img: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=200&q=60', promo: null },
+  { name: 'Ananas', cat: 'fruits', price: '500 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=200&q=60', promo: null },
+  { name: 'Chou pommé', cat: 'legumes', price: '600 FCFA', rating: 4, img: 'https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?w=200&q=60', promo: null },
+  { name: 'Patate douce', cat: 'tubercules', price: '700 FCFA/kg', rating: 5, img: 'https://images.unsplash.com/photo-1596097635121-14b63b7a0c19?w=200&q=60', promo: null },
+  { name: 'Papaye', cat: 'fruits', price: '300 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=200&q=60', promo: '-15%' },
+  { name: 'Mil local', cat: 'cereales', price: '450 FCFA/kg', rating: 4, img: 'https://images.unsplash.com/photo-1510217346649-6050f7898b47?w=200&q=60', promo: null },
+  { name: 'Oignon violet', cat: 'legumes', price: '350 FCFA/kg', rating: 4, img: 'https://images.unsplash.com/photo-1508747703725-719777637510?w=200&q=60', promo: null },
+  { name: 'Attiéké', cat: 'frais', price: '200 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1516685018646-549198525c1b?w=200&q=60', promo: 'Local' },
+  { name: 'Poisson fumé', cat: 'frais', price: '1500 FCFA', rating: 5, img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=200&q=60', promo: null },
+  { name: 'Citron vert', cat: 'fruits', price: '500 FCFA/dz', rating: 4, img: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=200&q=60', promo: null },
+];
+
+let currentCat = 'all';
+let displayCount = 10;
+
+function renderProducts(prods) {
+  const grid = document.getElementById('produitsGrid');
+  grid.innerHTML = prods.slice(0, displayCount).map(p => `
+    <div class="produit-card">
+      <div class="produit-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.promo ? `<span class="promo-badge">${p.promo}</span>` : ''}
+      </div>
+      <div class="produit-body">
+        <div class="produit-stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
+        <h4>${p.name}</h4>
+        <span class="produit-price">${p.price}</span>
+        <button class="produit-add" onclick="addToCart('${p.name}')">+ Ajouter</button>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('loadMoreBtn').style.display = prods.length > displayCount ? 'inline-flex' : 'none';
+}
+
+function filterCat(cat, btn) {
+  currentCat = cat;
+  displayCount = 10;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterProducts() {
+  displayCount = 10;
+  applyFilters();
+}
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = allProducts;
+  if (currentCat !== 'all') filtered = filtered.filter(p => p.cat === currentCat);
+  if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search));
+  renderProducts(filtered);
+}
+
+function loadMoreProducts() {
+  displayCount += 10;
+  applyFilters();
+}
+
+function addToCart(name) {
+  const btn = event.target;
+  btn.textContent = '✓ Ajouté !';
+  btn.style.background = 'var(--orange)';
+  setTimeout(() => { btn.textContent = '+ Ajouter'; btn.style.background = ''; }, 2000);
+}
+
+renderProducts(allProducts);
+
+// EPICERIES DATA
+const epiceries = [
+  { name: 'Épicerie Adjamé', zone: 'Adjamé', prods: 180, color: '#1a6b2a' },
+  { name: 'Épicerie Cocody', zone: 'Cocody', prods: 220, color: '#e85d04' },
+  { name: 'Épicerie Yopougon', zone: 'Yopougon', prods: 195, color: '#1a6b2a' },
+  { name: 'Épicerie Marcory', zone: 'Marcory', prods: 160, color: '#e85d04' },
+  { name: 'Épicerie Abobo', zone: 'Abobo', prods: 175, color: '#1a6b2a' },
+  { name: 'Épicerie Koumassi', zone: 'Koumassi', prods: 145, color: '#e85d04' },
+  { name: 'Épicerie Plateau', zone: 'Plateau', prods: 200, color: '#1a6b2a' },
+  { name: 'Épicerie Treichville', zone: 'Treichville', prods: 155, color: '#e85d04' },
+  { name: 'Épicerie Port-Bouët', zone: 'Port-Bouët', prods: 130, color: '#1a6b2a' },
+  { name: 'Épicerie Bingerville', zone: 'Bingerville', prods: 120, color: '#e85d04' },
+  { name: 'Épicerie Riviera', zone: 'Cocody', prods: 185, color: '#1a6b2a' },
+  { name: 'Épicerie 2 Plateaux', zone: 'Cocody', prods: 210, color: '#e85d04' },
+  { name: 'Épicerie Angré', zone: 'Cocody', prods: 165, color: '#1a6b2a' },
+  { name: 'Épicerie Williamsville', zone: 'Adjamé', prods: 140, color: '#e85d04' },
+  { name: 'Épicerie Niangon', zone: 'Yopougon', prods: 150, color: '#1a6b2a' },
+  { name: 'Épicerie Songon', zone: 'Songon', prods: 110, color: '#e85d04' },
+];
+
+const foodImgs = [
+  'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=300&q=60',
+  'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=60',
+  'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=300&q=60',
+  'https://images.unsplash.com/photo-1543168256-418811576931?w=300&q=60',
+  'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300&q=60',
+  'https://images.unsplash.com/photo-1498579485796-98be3abc076e?w=300&q=60',
+  'https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=300&q=60',
+  'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=300&q=60',
+];
+
+const grid = document.querySelector('.epicerie-grid');
+epiceries.forEach((ep, i) => {
+  grid.innerHTML += `
+    <div class="epicerie-card">
+      <div class="epicerie-img">
+        <img src="${foodImgs[i % foodImgs.length]}" alt="${ep.name}" loading="lazy">
+        <span class="epicerie-badge">✓ Actif</span>
+      </div>
+      <div class="epicerie-body">
+        <h4>${ep.name}</h4>
+        <p class="loc">📍 ${ep.zone}</p>
+        <p class="prods">🛒 ${ep.prods} produits</p>
+        <button class="btn-visit">Visiter →</button>
+      </div>
+    </div>
+  `;
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
