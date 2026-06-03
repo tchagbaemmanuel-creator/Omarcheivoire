@@ -389,6 +389,20 @@
   .store-btn-icon { font-size: 1.8rem; }
   .store-btn-text { font-size: 0.65rem; color: rgba(255,255,255,0.65); }
   .store-btn-name { font-size: 0.9rem; font-weight: 700; display: block; }
+  .btn-download-apk {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+    color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 800; font-size: 1rem;
+    text-decoration: none; box-shadow: 0 8px 28px rgba(232,93,4,0.45);
+    transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+  }
+  .btn-download-apk:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,93,4,0.55); }
+  .download-steps {
+    margin-top: 1.5rem; padding: 1.25rem 1.5rem; border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.7;
+  }
+  .download-steps ol { margin: 0.5rem 0 0 1.2rem; }
   .app-mockup { position: relative; display: flex; justify-content: center; }
   .phone-frame {
     width: 260px;
@@ -609,7 +623,7 @@
     <li><a href="#app">Application</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#commander" class="nav-cta">Commander →</a>
+  <a href="#telecharger" class="nav-cta" data-apk-download>Télécharger l'app</a>
   <button class="nav-mobile-btn" id="menuBtn" aria-label="Menu">☰</button>
 </nav>
 
@@ -621,7 +635,7 @@
   <a href="#produits" onclick="closeMobileMenu()">Produits vivriers</a>
   <a href="#app" onclick="closeMobileMenu()">Application mobile</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-  <a href="#commander" class="btn-primary" onclick="closeMobileMenu()">Commander maintenant</a>
+  <a href="#telecharger" class="btn-primary" data-apk-download onclick="closeMobileMenu()">Télécharger l'app</a>
 </div>
 
 <!-- HERO -->
@@ -634,8 +648,8 @@
       <h1>Le premier <em>hypermarché vivrier digital</em> en Côte d'Ivoire</h1>
       <p class="hero-sub">O'Marché Ivoire connecte commerçantes, agriculteurs et consommateurs d'Abidjan dans une seule plateforme moderne. Produits frais, livrés chez vous.</p>
       <div class="hero-btns">
-        <a href="#commander" class="btn-primary">🛒 Commander maintenant</a>
-        <a href="#partenaire" class="btn-secondary">🤝 Devenir partenaire</a>
+        <a href="#telecharger" class="btn-primary" data-apk-download>📲 Télécharger l'application</a>
+        <a href="#produits" class="btn-secondary">🛒 Découvrir les produits</a>
       </div>
       <div class="hero-stats">
         <div class="stat-card">
@@ -1052,21 +1066,20 @@
           <div class="app-feature"><div class="app-feature-icon">⭐</div><span>Notation et avis sur les produits</span></div>
           <div class="app-feature"><div class="app-feature-icon">💳</div><span>Paiement mobile money & crédit</span></div>
         </div>
-        <div class="app-store-btns">
-          <a href="#" class="store-btn">
-            <div class="store-btn-icon">🍎</div>
-            <div>
-              <div class="store-btn-text">Disponible sur</div>
-              <span class="store-btn-name">App Store</span>
-            </div>
+        <div id="telecharger" style="scroll-margin-top:100px;">
+          <a href="#" class="btn-download-apk" data-apk-download rel="noopener">
+            ▶ Télécharger l'APK Android
           </a>
-          <a href="#" class="store-btn">
-            <div class="store-btn-icon">▶</div>
-            <div>
-              <div class="store-btn-text">Disponible sur</div>
-              <span class="store-btn-name">Google Play</span>
-            </div>
-          </a>
+          <div class="download-steps">
+            <strong>Installation (Android)</strong>
+            <ol>
+              <li>Téléchargez le fichier APK ci-dessus.</li>
+              <li>Autorisez l'installation depuis « sources inconnues » si Android le demande.</li>
+              <li>Ouvrez <strong>O'Marché Ivoire</strong>, créez un compte ou connectez-vous.</li>
+              <li>Commandez vos produits vivriers — livraison à Abidjan.</li>
+            </ol>
+            <p style="margin-top:0.75rem;opacity:0.85;">Version Android · API en ligne · iOS bientôt sur l'App Store.</p>
+          </div>
         </div>
       </div>
       <div class="app-mockup animate-on-scroll">
@@ -1155,7 +1168,7 @@
     <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1rem;">Prêt à révolutionner<br><em>vos courses vivriers ?</em></h2>
     <p style="color:rgba(255,255,255,0.85);margin-bottom:2.5rem;font-size:1.05rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;">Rejoignez des milliers de familles et commerçantes qui font confiance à O'Marché Ivoire chaque jour.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#" class="btn-secondary" style="background:white;color:var(--orange);font-weight:700;">🛒 Commander maintenant</a>
+      <a href="#telecharger" class="btn-secondary" data-apk-download style="background:white;color:var(--orange);font-weight:700;">📲 Télécharger l'application</a>
       <a href="tel:+2250778088427" class="btn-secondary">📞 +225 07 78 08 84 27</a>
     </div>
   </div>
@@ -1227,6 +1240,16 @@
 <!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
 
+<script src="site-config.js"></script>
+<script>
+document.querySelectorAll("[data-apk-download]").forEach((el) => {
+  if (window.OMARCHE_SITE_CONFIG?.APK_DOWNLOAD_URL) {
+    el.href = window.OMARCHE_SITE_CONFIG.APK_DOWNLOAD_URL;
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener noreferrer");
+  }
+});
+</script>
 <script>
 // LOADER
 window.addEventListener('load', () => {

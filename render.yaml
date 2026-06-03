@@ -1,0 +1,11 @@
+# Site vitrine statique — https://omarcheivoire.onrender.com
+services:
+  - type: web
+    name: omarcheivoire-site
+    runtime: static
+    buildCommand: echo "Site statique O'Marché Ivoire"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
