@@ -1,6 +1,5 @@
-/** URL de téléchargement APK — mettre à jour après chaque build EAS preview Android */
+/** Lien APK permanent : fichier hébergé sur le site (ne pas utiliser expo.dev/artifacts). */
 window.OMARCHE_SITE_CONFIG = {
-	APK_DOWNLOAD_URL:
-		"https://expo.dev/artifacts/eas/5wkQuGLoeSUNyUbUSVzYdJ.apk",
+	APK_DOWNLOAD_URL: "/downloads/omarche-ivoire.apk",
 	API_URL: "https://appomarcheivoire.onrender.com",
 };

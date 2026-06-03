@@ -13,17 +13,23 @@ Page statique : présentation, catalogue démo et **téléchargement de l'applic
 2. Branche `main`, dossier racine.
 3. Le fichier `render.yaml` configure la publication statique.
 
-## Mettre à jour le lien APK
+## Lien APK (permanent)
+
+Le bouton « Télécharger » pointe vers **`/downloads/omarche-ivoire.apk`** (fichier sur le site, pas de lien EAS temporaire).
 
 Après un build EAS :
 
 ```bash
 cd ../omarche-main/mobile
-npx eas build -p android --profile preview
-npx eas build:list
+npm run build:android:preview
+npm run sync:apk-to-site
+cd ../../omarche-site
+git add downloads/omarche-ivoire.apk site-config.js
+git commit -m "Mise à jour APK"
+git push
 ```
 
-Copier l'URL **Application Archive** (`.apk`) dans `site-config.js` → `APK_DOWNLOAD_URL`, puis commit et push.
+Render redéploie automatiquement. Si l’APK dépasse 100 Mo, utiliser [Git LFS](https://git-lfs.github.com/) pour `downloads/*.apk`.
 
 ## Fichiers
 
